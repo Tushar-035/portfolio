@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ post.title }} | {{ me.name }}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0e1a'/><text y='.9em' font-size='70' x='10' fill='%235b8dee'>ψ</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">ψ</div>
+    {{ me.nav_id }}
+  </div>
+  <div class="nav-links">
+    <a href="/#about">about</a>
+    <a href="/#research">research</a>
+    <a href="/#publications">publications</a>
+    <a href="/#groups">groups</a>
+    <a href="/#blog">blog</a>
+    <a href="/#contact">contact</a>
+  </div>
+</nav>
+
+<div class="post-hero">
+  <div class="post-tag">{{ post.tag }}</div>
+  <h1 class="post-title">{{ post.title }}</h1>
+  <div class="post-meta">{{ post.date }} &nbsp;·&nbsp; {{ me.name }}</div>
+</div>
+
+<div class="post-body">
+  {% for para in post.content %}
+  <p>{{ para }}</p>
+  {% endfor %}
+</div>
+
+{% if post.images %}
+<div class="post-gallery">
+  <div class="section-label" style="margin-bottom:1.2rem;">// photos</div>
+  <div class="gallery-grid">
+    {% for img in post.images %}
+    <div class="gallery-item">
+      <img src="{{ url_for('static', filename='blog-images/' + img.file) }}" alt="{{ img.caption }}" onclick="openLightbox(this.src, '{{ img.caption }}')" style="cursor:zoom-in;"/>
+      {% if img.caption %}
+      <div class="gallery-caption">{{ img.caption }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<div class="post-footer">
+  <a href="/#blog" class="btn btn-ghost">← Back to blog</a>
+</div>
+
+<footer>
+  <span>© {{ me.name }} · IISc Bengaluru</span>
+  <span>built with curiosity ψ</span>
+</footer>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt=""/>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+  function openLightbox(src, caption) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-caption').innerText = caption;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+</body>
+</html>

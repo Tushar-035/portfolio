@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ item.title }} | {{ me.name }}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0e1a'/><text y='.9em' font-size='70' x='10' fill='%235b8dee'>ψ</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">ψ</div>
+    {{ me.nav_id }}
+  </div>
+  <div class="nav-links">
+    <a href="/#about">about</a>
+    <a href="/#research">research</a>
+    <a href="/#publications">publications</a>
+    <a href="/#groups">groups</a>
+    <a href="/#blog">blog</a>
+    <a href="/#contact">contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="about-page-hero">
+  <div class="post-tag">
+    {% if item.tag == 'current' %}
+    ● &nbsp;Current Research
+    {% else %}
+    Past Research
+    {% endif %}
+    &nbsp;·&nbsp; {{ item.subtitle }}
+  </div>
+  <h1 class="post-title">{{ item.title }}</h1>
+  <p style="color:var(--muted); font-size:15px; margin-top:1rem; max-width:600px;">
+    {{ item.short }}
+  </p>
+</div>
+
+<!-- OVERVIEW -->
+<div class="research-page-section">
+  <div class="section-label">// overview</div>
+  <div class="section-title">The research</div>
+  {% for para in item.overview %}
+  <p style="color:var(--muted); font-size:15px; line-height:1.9; margin-bottom:1.3rem; max-width:720px;">{{ para }}</p>
+  {% endfor %}
+</div>
+
+<!-- KEY QUESTION -->
+<div class="research-page-section" style="background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border);">
+  <div class="section-label">// central question</div>
+  <div class="rq-box">
+    <div class="rq-mark">"</div>
+    <div class="rq-text">{{ item.questions }}</div>
+  </div>
+</div>
+
+<!-- TECHNIQUES -->
+<div class="research-page-section">
+  <div class="section-label">// methods & tools</div>
+  <div class="section-title">Techniques used</div>
+  <div class="techniques-grid">
+    {% for t in item.techniques %}
+    <div class="technique-chip">{{ t }}</div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- BACK -->
+<div style="padding: 0 2.5rem 3rem; max-width:900px; margin: 0 auto;">
+  <a href="/#research" class="btn btn-ghost">← Back to research</a>
+</div>
+
+<footer>
+  <span>© {{ me.name }} · IISc Bengaluru</span>
+  <span>built with curiosity ψ</span>
+</footer>
+
+</body>
+</html>

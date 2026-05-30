@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ me.name }} | PhD Researcher · IISc</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0e1a'/><text y='.9em' font-size='70' x='10' fill='%235b8dee'>ψ</text></svg>"/>
+  <!--<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}"/>--> <!--for using logos-->
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ψ &nbsp;{{ me.nav_id }}</div>
+  <div class="nav-links">
+    <a href="#about">about</a>
+    <a href="#research">research</a>
+    <a href="#publications">publications</a>
+    <a href="#groups">groups</a>
+    <a href="#blog">blog</a>
+    <a href="#contact">contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-affil">
+    <img src="{{ url_for('static', filename='logos/iisc.svg') }}" alt="IISc" title="IISc - PhD"/>
+    <img src="{{ url_for('static', filename='logos/iitism.svg') }}" alt="IIT ISM" title="IIT (ISM) Dhanbad - Master"/>
+    <img src="{{ url_for('static', filename='logos/utkal.png') }}" alt="Utkal" title="Utkal University- Bachelor"/>
+  </div>
+<div class="hero-content">
+    <div class="hero-tag">PhD Researcher · IISc Bangalore</div>
+    <h1>Where <em>physics</em><br>escapes <em>perception</em></h1>
+    <p class="hero-sub">
+      I'm a PhD student in the Department of Physics at the Indian Institute of Science.
+      I write about science, academia, and life updates.
+    </p>
+    <div class="hero-btns">
+      <a href="#research" class="btn btn-primary">View my research →</a>
+      <a href="#blog" class="btn btn-ghost">Read the blog</a>
+    </div>
+  </div>
+</div><!-- end hero -->
+
+<!-- STATS -->
+<div class="stats-row">
+  {% for key, s in me.stats.items() %}
+  <div class="stat">
+    <div class="stat-val">{{ s.value }}</div>
+    <div class="stat-label">{{ s.label }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- ABOUT -->
+<span id="about" class="section-anchor"></span>
+<section>
+  <div class="section-label">// 01 &nbsp;about me</div>
+  <div class="section-title">Researcher &middot; Observer &middot; Explorer</div>
+  <div class="about-grid">
+    <div class="about-card">
+      <img src="{{ url_for('static', filename='photo.JPG') }}" alt="{{ me.name }}" class="avatar-img"/>
+      <div class="about-name">{{ me.name }}</div>
+      <div class="about-role">{{ me.role }}</div>
+      <div style="font-size:13px; color:var(--muted); margin-bottom:0.5rem;">{{ me.institute }}</div>
+      <div style="font-size:12px; color:var(--muted); font-family:'DM Mono',monospace; display:flex; align-items:center; gap:6px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+  {{ me.email }}
+</div>
+      <div class="about-chips">
+        {% for tag in me.tags %}
+        <span class="chip">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="about-text">
+  <a href="/about" class="btn btn-primary" style="margin-bottom: 1.5rem; display: inline-flex;">View full profile →</a>
+      {% for para in me.bio %}
+      <p>{{ para }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<span id="research" class="section-anchor"></span>
+<section class="alt-section">
+  <div class="section-label">// 02 &nbsp;research</div>
+  <div class="section-title">What I work on</div>
+  <div class="research-grid">
+    {% for r in research %}
+    <a href="/research/{{ r.id }}" class="research-card">
+  {% if r.id == 'ultrafast-spectroscopy' %}
+<div class="rc-icon-anim" id="anim-laser"></div>
+{% elif r.id == 'nuclear-dynamics' %}
+<div class="rc-icon-anim" id="anim-nuclear"></div>
+{% endif %}
+  <div class="rc-title">{{ r.title }}</div>
+  <div class="rc-desc">{{ r.short }}</div>
+  <div class="rc-arrow">→</div>
+</a>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<span id="publications" class="section-anchor"></span>
+<section>
+  <div class="section-label">// 03 &nbsp;publications</div>
+  <div class="section-title">Papers & preprints</div>
+  <div class="pub-list">
+    {% for pub in publications %}
+    <div class="pub-item">
+      <div class="pub-year">{{ pub.year }}</div>
+      <div class="pub-body">
+        <div class="pub-title">{{ pub.title }}</div>
+      <div class="pub-journal">{{ pub.journal }}</div>
+      <div class="pub-authors">{{ pub.authors }}</div>
+    </div>
+      {% if pub.link and pub.link != '#' %}
+      <a href="{{ pub.link }}" target="_blank" class="pub-badge">{{ pub.badge }}</a>
+      {% else %}
+      <div class="pub-badge">{{ pub.badge }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- GROUPS -->
+<span id="groups" class="section-anchor"></span>
+<section>
+  <div class="section-label">// 04 &nbsp;research groups</div>
+  <div class="section-title">Where I've worked</div>
+  <div class="timeline">
+    {% for group in groups %}
+    <div class="tl-item {% if loop.first %}tl-current{% endif %}">
+      <div class="tl-left">
+        <div class="tl-period">{{ group.period }}</div>
+        <div class="tl-institute">{{ group.institute }}</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-dot {% if loop.first %}tl-dot-active{% endif %}"></div>
+        {% if not loop.last %}<div class="tl-line"></div>{% endif %}
+      </div>
+      <div class="tl-right">
+        <div class="tl-card">
+          <div class="tl-badge">{{ group.type }}</div>
+          <div class="tl-group-name">{{ group.name }}</div>
+          <div class="tl-pi">
+            <span class="tl-pi-label">PI</span>
+            {% if group.pi_url %}
+            <a href="{{ group.pi_url }}" target="_blank" class="tl-pi-name">{{ group.pi }}</a>
+            {% else %}
+            <span class="tl-pi-name">{{ group.pi }}</span>
+            {% endif %}
+          </div>
+          <div class="tl-work">{{ group.work }}</div>
+          {% if group.group_url %}
+          <a href="{{ group.group_url }}" target="_blank" class="tl-link">Visit group page →</a>
+          {% else %}
+          <span class="tl-link-muted">Group page coming soon</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- BLOG -->
+<span id="blog" class="section-anchor"></span>
+<section class="alt-section">
+  <div class="section-label">// 05 &nbsp;blog</div>
+  <div class="section-title">Thoughts & updates</div>
+  <div class="blog-carousel-wrapper">
+  <div class="blog-carousel" id="blogCarousel">
+    {% for post in blog_posts %}
+    <a href="/blog/{{ post.id }}" class="blog-card">
+      <div class="blog-date">{{ post.date }}</div>
+      <div class="blog-title">{{ post.title }}</div>
+      <div class="blog-snippet">{{ post.snippet }}</div>
+      <div class="blog-tag">→ {{ post.tag }}</div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<span id="contact" class="section-anchor"></span>
+<section>
+  <div class="section-label">// 05 &nbsp;contact</div>
+  <div class="section-title">Let's connect</div>
+  <p style="color:var(--muted); font-size:14px; max-width:480px; margin-bottom:1.8rem;">
+    I'm always happy to connect with fellow students, researchers, or anyone curious about physics.
+    Feel free to reach out for collaborations, questions, or just a conversation.
+  </p>
+  <div class="contact-row">
+  <a href="mailto:{{ me.social.email }}" class="contact-link">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    email
+  </a>
+  <a href="{{ me.social.linkedin }}" target="_blank" class="contact-link">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+    linkedin
+  </a>
+  <a href="{{ me.social.scholar }}" target="_blank" class="contact-link">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    google scholar
+  </a>
+</div>
+</section>
+
+<footer>
+  <span>© {{ now.year }} {{ me.name }} · IISc Bengaluru</span>
+  <span>built with ψ</span>
+</footer>
+<script>
+  const carousel = document.getElementById('blogCarousel');
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
+  let autoSlide;
+
+  function startAutoSlide() {
+    autoSlide = setInterval(() => {
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      if (carousel.scrollLeft >= maxScroll - 1) {
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({ left: carousel.clientWidth / 3 + 6.5, behavior: 'smooth' });
+      }
+    }, 3500);
+  }
+
+  function stopAutoSlide() { clearInterval(autoSlide); }
+
+  carousel.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+    carousel.style.cursor = 'grabbing';
+    stopAutoSlide();
+  });
+  carousel.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    carousel.scrollLeft = scrollLeft - walk;
+  });
+  carousel.addEventListener('mouseup', () => {
+    isDragging = false;
+    carousel.style.cursor = 'grab';
+    startAutoSlide();
+  });
+  carousel.addEventListener('mouseleave', () => {
+    isDragging = false;
+    carousel.style.cursor = 'grab';
+    startAutoSlide();
+  });
+  carousel.addEventListener('mouseenter', stopAutoSlide);
+
+  // smooth scroll behavior
+  carousel.style.scrollBehavior = 'smooth';
+
+  startAutoSlide();
+</script>
+<script>
+// ── LASER ANIMATION ──
+(function() {
+  const el = document.getElementById('anim-laser');
+  if (!el) return;
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 280 56');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '56');
+  svg.style.display = 'block';
+  svg.style.overflow = 'visible';
+
+  const targetX = 130;
+  const targetY = 28;
+
+  // glow filter
+  svg.innerHTML = `
+    <defs>
+      <filter id="lglow">
+        <feGaussianBlur stdDeviation="2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- static dim guide beam from left -->
+    <line x1="0" y1="${targetY}" x2="${targetX - 5}" y2="${targetY}"
+      stroke="#ff4444" stroke-width="1" opacity="0.2"/>
+
+    <!-- target block -->
+    <rect x="${targetX - 4}" y="${targetY - 14}" width="8" height="28"
+      rx="2" fill="rgba(91,141,238,0.15)" stroke="#5b8dee" stroke-width="1"/>
+
+    <!-- moving red pulse dot from left to target -->
+    <circle r="4" fill="#ff4444" filter="url(#lglow)">
+      <animateMotion dur="2s" repeatCount="indefinite" calcMode="linear"
+        path="M 0 ${targetY} L ${targetX - 5} ${targetY}"/>
+      <animate attributeName="opacity" values="0;1;1;0"
+  keyTimes="0;0.1;0.82;0.83" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- flash on impact -->
+    <circle cx="${targetX}" cy="${targetY}" fill="white" filter="url(#lglow)">
+      <animate attributeName="r" values="0;0;8;0"
+  keyTimes="0;0.85;0.92;1" dur="2s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0;0;1;0"
+  keyTimes="0;0.85;0.92;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- outgoing harmonics -->
+    ${ [
+  { color: '#5b8dee', tx: 130, ty: -22, w: 2.0 },
+  { color: '#7b9ef0', tx: 130, ty: -13, w: 1.6 },
+  { color: '#9b8ef5', tx: 130, ty: -4,  w: 1.4 },
+  { color: '#a78bfa', tx: 130, ty: 5,   w: 1.2 },
+  { color: '#8b7fd4', tx: 130, ty: 14,  w: 1.0 },
+  { color: '#c4b0ff', tx: 130, ty: 22,  w: 0.8 },
+].map(h => {
+  const endX = targetX + 4 + h.tx;
+  const endY = targetY + h.ty;
+  const len = Math.sqrt(h.tx * h.tx + h.ty * h.ty);
+  return `
+    <!-- trailing line -->
+    <line x1="${targetX+4}" y1="${targetY}" x2="${targetX+4}" y2="${targetY}"
+      stroke="${h.color}" stroke-width="${h.w}" filter="url(#lglow)">
+      <animate attributeName="x2" values="${targetX+4};${endX};${endX}"
+        keyTimes="0;0.45;1" dur="2s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="y2" values="${targetY};${endY};${endY}"
+        keyTimes="0;0.45;1" dur="2s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.7;0"
+  keyTimes="0;0.5;1" dur="2s" begin="0s" repeatCount="indefinite"/>
+    </line>
+  `;
+}).join('') }
+  `;
+
+  el.appendChild(svg);
+})();
+
+// ── NUCLEAR ANIMATION ──
+(function() {
+  const el = document.getElementById('anim-nuclear');
+  if (!el) return;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '56');
+  svg.setAttribute('viewBox', '0 0 280 56');
+  svg.style.display = 'block';
+
+  const cx = 140, cy = 28;
+
+  // nucleus
+  const nucleus = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  nucleus.setAttribute('cx', cx);
+  nucleus.setAttribute('cy', cy);
+  nucleus.setAttribute('r', '7');
+  nucleus.setAttribute('fill', 'rgba(91,141,238,0.3)');
+  nucleus.setAttribute('stroke', '#5b8dee');
+  nucleus.setAttribute('stroke-width', '1.5');
+  svg.appendChild(nucleus);
+
+  // pulse ring
+  const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  ring.setAttribute('cx', cx);
+  ring.setAttribute('cy', cy);
+  ring.setAttribute('r', '7');
+  ring.setAttribute('fill', 'none');
+  ring.setAttribute('stroke', '#5b8dee');
+  ring.setAttribute('stroke-width', '1');
+  ring.setAttribute('opacity', '0.6');
+  const rAnim1 = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+  rAnim1.setAttribute('attributeName', 'r');
+  rAnim1.setAttribute('from', '7'); rAnim1.setAttribute('to', '30');
+  rAnim1.setAttribute('dur', '2s'); rAnim1.setAttribute('repeatCount', 'indefinite');
+  const rAnim2 = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+  rAnim2.setAttribute('attributeName', 'opacity');
+  rAnim2.setAttribute('from', '0.6'); rAnim2.setAttribute('to', '0');
+  rAnim2.setAttribute('dur', '2s'); rAnim2.setAttribute('repeatCount', 'indefinite');
+  ring.appendChild(rAnim1); ring.appendChild(rAnim2);
+  svg.appendChild(ring);
+
+  // orbiting particles
+  const orbits = [
+    { rx: 40, ry: 14, dur: '3s', color: '#a78bfa', offset: '0s' },
+    { rx: 55, ry: 10, dur: '2.2s', color: '#5b8dee', offset: '-1s' },
+    { rx: 30, ry: 18, dur: '4s', color: '#ff8844', offset: '-0.5s' },
+  ];
+
+  orbits.forEach(o => {
+    // ellipse orbit path
+    const ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+    ellipse.setAttribute('cx', cx); ellipse.setAttribute('cy', cy);
+    ellipse.setAttribute('rx', o.rx); ellipse.setAttribute('ry', o.ry);
+    ellipse.setAttribute('fill', 'none');
+    ellipse.setAttribute('stroke', o.color);
+    ellipse.setAttribute('stroke-width', '0.5');
+    ellipse.setAttribute('opacity', '0.25');
+    svg.appendChild(ellipse);
+
+    // particle
+    const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    particle.setAttribute('r', '2.5');
+    particle.setAttribute('fill', o.color);
+    particle.setAttribute('opacity', '0.9');
+    const motion = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+    motion.setAttribute('dur', o.dur);
+    motion.setAttribute('begin', o.offset);
+    motion.setAttribute('repeatCount', 'indefinite');
+    const mpath = document.createElementNS('http://www.w3.org/2000/svg', 'mpath');
+    // create path for ellipse
+    const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const id = `orbit-${Math.random().toString(36).substr(2,5)}`;
+    pathEl.setAttribute('id', id);
+    pathEl.setAttribute('d', `M ${cx + o.rx} ${cy} a ${o.rx} ${o.ry} 0 1 0 -0.01 0`);
+    pathEl.setAttribute('fill', 'none');
+    const defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS('http://www.w3.org/2000/svg','defs'), svg.firstChild);
+    defs.appendChild(pathEl);
+    mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${id}`);
+    motion.appendChild(mpath);
+    particle.appendChild(motion);
+    svg.appendChild(particle);
+  });
+
+  el.appendChild(svg);
+})();
+</script>
+</body>
+</html>
