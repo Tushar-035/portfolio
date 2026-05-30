@@ -64,7 +64,7 @@ ME = {
     },
 ],
     "stats": {
-        "year": {"value": "1st", "label": "year of phd"},
+        "year": {"value": "2st", "label": "year of phd"},
         "papers": {"value": "0", "label": "papers / preprints"},
         "curiosity": {"value": "∞", "label": "curiosity"},
     },
