@@ -112,12 +112,12 @@ RESEARCH = [
 
 PUBLICATIONS = [
     {
-        "year": "2025",
-        "title": "Title of Your Most Recent Paper or Preprint",
-        "journal": "arXiv / Physical Review Letters / Nature Physics",
-        "authors": "Your Name, Co-author 1, Co-author 2, Advisor Name",
-        "badge": "preprint",
-        "link": "#",
+        # "year": "2025",
+        # "title": "Title of Your Most Recent Paper or Preprint",
+        # "journal": "arXiv / Physical Review Letters / Nature Physics",
+        # "authors": "Your Name, Co-author 1, Co-author 2, Advisor Name",
+        # "badge": "preprint",
+        # "link": "#",
     },
 ]
 
