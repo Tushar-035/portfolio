@@ -71,6 +71,8 @@ ME = {
     "social": {
         "email": "tusharsahoo@iisc.ac.in",
         "linkedin": "https://www.linkedin.com/in/tusharkantsahoo/",
+        "github": "https://github.com/Tushar-035",
+        "orcid": "https://orcid.org/my-orcid?orcid=0009-0005-4990-5497",
         "scholar": "https://scholar.google.com/",
     },
 }

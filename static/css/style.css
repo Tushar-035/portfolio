@@ -485,3 +485,148 @@ footer {
   color: var(--muted);
   font-family: 'DM Mono', monospace;
 }
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav {
+    padding: 0 1.2rem;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 0.8rem 1.2rem;
+    gap: 0.8rem;
+  }
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 3rem 1.2rem 2rem;
+    min-height: auto;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero-orb {
+    display: none;
+  }
+  .hero-affil {
+    top: 1rem;
+    right: 1rem;
+    gap: 0.6rem;
+  }
+  .hero-affil img {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* STATS */
+  .stats-row {
+    margin: 0 1.2rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1 1 45%;
+    padding: 1rem;
+    border-right: none;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 2.5rem 1.2rem;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* RESEARCH */
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* TIMELINE */
+  .tl-item {
+    grid-template-columns: 0px 30px 1fr;
+  }
+  .tl-left {
+    display: none;
+  }
+  .tl-right {
+    padding: 0 0 1.5rem 0.8rem;
+  }
+
+  /* BLOG CAROUSEL */
+  .blog-carousel .blog-card {
+    min-width: calc(85% - 0.8rem);
+  }
+
+  /* CONTACT */
+  .contact-row {
+    gap: 0.8rem;
+  }
+  .contact-link {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  /* ABOUT PAGE */
+  .about-page-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .about-page-hero {
+    margin: 2rem auto 1rem;
+    padding: 0 1.2rem;
+  }
+  .about-page-section {
+    padding: 2rem 1.2rem;
+  }
+  .achieve-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* BLOG POST PAGE */
+  .post-hero {
+    margin: 2rem auto 1rem;
+    padding: 0 1.2rem;
+  }
+  .post-body {
+    padding: 0 1.2rem;
+  }
+  .post-footer {
+    padding: 0 1.2rem;
+  }
+
+  /* RESEARCH PAGE */
+  .research-page-section {
+    padding: 2rem 1.2rem;
+  }
+  .rq-text {
+    font-size: 1.1rem;
+  }
+
+  /* GALLERY */
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* FOOTER */
+  footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1.2rem;
+  }
+}
