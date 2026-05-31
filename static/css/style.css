@@ -556,49 +556,61 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  /* TIMELINE */
+/* TIMELINE */
+  .timeline {
+    overflow: hidden !important;
+    width: 100% !important;
+  }
   .tl-item {
-    grid-template-columns: 0px 24px 1fr;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.8rem !important;
+    width: 100% !important;
+    overflow: hidden !important;
   }
   .tl-left {
-    display: none;
+    display: none !important;
   }
   .tl-center {
-    padding-top: 0.8rem;
+    flex-shrink: 0 !important;
+    padding-top: 0.8rem !important;
+    width: 24px !important;
   }
   .tl-right {
-    padding: 0 0 1.5rem 0.8rem;
+    flex: 1 !important;
+    min-width: 0 !important;
+    padding: 0 0 1.5rem 0 !important;
+    overflow: hidden !important;
   }
   .tl-card {
-    padding: 1rem;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 1rem !important;
   }
   .tl-group-name {
-    font-size: 13px;
-    line-height: 1.4;
-    margin-bottom: 0.4rem;
-  }
-  .tl-badge {
-    font-size: 9px;
-    padding: 2px 8px;
-    margin-bottom: 0.5rem;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    word-break: break-word !important;
+    white-space: normal !important;
   }
   .tl-pi {
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-bottom: 0.4rem;
+    flex-wrap: wrap !important;
+    gap: 5px !important;
   }
   .tl-pi-name {
-    font-size: 12px;
+    font-size: 12px !important;
+    word-break: break-word !important;
   }
   .tl-work {
-    font-size: 12px;
-    margin-bottom: 0.5rem;
+    font-size: 12px !important;
+    word-break: break-word !important;
+  }
+  .tl-badge {
+    font-size: 9px !important;
   }
   .tl-link-muted {
-    font-size: 11px;
-  }
-  .tl-period {
-    font-size: 10px;
+    font-size: 11px !important;
   }
 
   /* BLOG CAROUSEL */
