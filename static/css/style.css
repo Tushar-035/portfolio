@@ -558,13 +558,47 @@ footer {
 
   /* TIMELINE */
   .tl-item {
-    grid-template-columns: 0px 30px 1fr;
+    grid-template-columns: 0px 24px 1fr;
   }
   .tl-left {
     display: none;
   }
+  .tl-center {
+    padding-top: 0.8rem;
+  }
   .tl-right {
     padding: 0 0 1.5rem 0.8rem;
+  }
+  .tl-card {
+    padding: 1rem;
+  }
+  .tl-group-name {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+  }
+  .tl-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+    margin-bottom: 0.5rem;
+  }
+  .tl-pi {
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 0.4rem;
+  }
+  .tl-pi-name {
+    font-size: 12px;
+  }
+  .tl-work {
+    font-size: 12px;
+    margin-bottom: 0.5rem;
+  }
+  .tl-link-muted {
+    font-size: 11px;
+  }
+  .tl-period {
+    font-size: 10px;
   }
 
   /* BLOG CAROUSEL */
