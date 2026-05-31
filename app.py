@@ -159,8 +159,8 @@ BLOG_POSTS = [
         "It feels like a festival. For IISc members it genuinely is one.",
     ],
     "images": [
-        {"file": "openday1.JPG", "caption": "The main building"},
-        {"file": "openday2.JPG", "caption": "Inside the physics lab"},
+        {"file": "openday1.JPG", "caption": "Physicist"},
+        {"file": "openday2.JPG", "caption": "Physics Department"},
         {"file": "openday3.JPG", "caption": "With fellow researchers"},
         {"file": "openday4.JPG", "caption": "Lab Group"},
     ],
